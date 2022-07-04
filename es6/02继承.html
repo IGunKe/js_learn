@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<button>alert</button>
+<body>
+    <script>
+        class Father {
+            constructor(x, y) {
+                //this指向实例
+                console.log(this);
+                this.x = x;
+                this.y = y;
+                this.btn = document.querySelector('button');
+                this.btn.onclick = this.say;//加（）会立刻调用
+            }
+            sum() {
+                return this.x + this.y;
+            }
+            say() {
+                //指向调用者
+                console.log(this);
+                //alert('father');
+            }
+        }
+        class Son extends Father {
+            constructor(x, y) {
+                super(x, y);//调用父亲的构造函数
+            }
+            /* say() {
+                alert('son');
+                super.say();
+            } */
+        }
+        //在类中的所有属性的调用都要加this
+        const son = new Son(1,2);
+        son.say();
+    </script>
+</body>
+
+</html>

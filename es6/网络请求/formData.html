@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <input
+            type="file"
+            name=""
+            id="fileId"
+            placeholder="文件上传"
+            onchange="onSubmit()"
+        />
+        <script>
+            function onSubmit() {
+                const fileId = document.getElementById("fileId");
+                console.log(fileId.files[0]);
+                let formData = new FormData();
+                formData.append('file', fileId.files[0]);
+
+                let xhr = new XMLHttpRequest();
+                xhr.open('post', '', false);
+                xhr.setRequestHeader('', '');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4) {
+                        console.log(JSON.parse(xhr.responseText));
+                    }
+                }
+                xhr.send(formData);
+            }
+        </script>
+    </body>
+</html>

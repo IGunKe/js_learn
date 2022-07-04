@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var name = 'hello';
+        // var obj = {
+        //     name: 'world',
+        //     getName() {
+        //         return function() {
+        //             return this.name;
+        //         }
+        //     }
+        // }
+        // //返回的是匿名函数，this指向window
+        // console.log(obj.getName()());
+
+        var name = 'hello';
+        var obj = {
+            name: 'world',
+            getName() {
+                const that = this;//对象中的this指向对象
+                return function() {
+                    return that.name;
+                }
+            }
+        }
+        console.log(obj.getName()());
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{name}}
+        <span v-text="n"></span>
+        <span>放大十倍：<p v-big="n"></p></span>
+        <button @click="n++" v-once="n">增加</button>
+        <input type="text" v-focus:value="n">
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data:{
+            name: 'hello',
+            n : 2
+        },
+        directives: {
+            //函数式
+            //绑定时调用，或者是模版重新解析时再调用
+            big(element, binding) {
+                //console.log(element);//ele当前自定义指令所处的元素
+                //console.log(binding);//
+                element.innerHTML = binding.value * 10;
+            },
+            //对象式
+            focus: {
+                bind() {
+
+                },
+                inserted(element, binding) {
+                    element.focus();
+                },
+                updated() {
+
+                }
+            }
+            
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script crossorigin="anonymous"
+        integrity="sha512-Ot7ArUEhJDU0cwoBNNnWe487kjL5wAOsIYig8llY/l0P2TUFwgsAHVmrZMHsT8NGo+HwkjTJsNErS6QqIkBxDw=="
+        src="https://lib.baomitu.com/dayjs/1.11.2/dayjs.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- cumputed实现 -->
+        time: <span>{{time1}}</span><br/>
+        <!-- methods实现 通过调用实现-->
+        time: <span>{{getTime()}}</span><br/>
+        <!-- 过滤器实现 本质为一个函数-->
+        time: <span>{{time | timeFormatter}}</span><br />
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            time: 1654414126525
+        },
+        computed: {
+            time1() {
+                return dayjs(this.time).format('YYYY-MM-DD');
+            }
+        },
+        methods: {
+            getTime() {
+                return dayjs(this.time).format('YYYY-MM-DD');
+            }
+        },
+        filters: {
+            timeFormatter(val) {
+                return dayjs().format('YYYY-MM-DD');
+            }
+        }
+    });
+</script>
+</html>

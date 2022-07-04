@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.box {
+  border: 1px solid red;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  position: relative;
+}
+.box .box1 {
+  width: 50px;
+  height: 50px;
+  background-color: pink;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-25px, -25px);
+}

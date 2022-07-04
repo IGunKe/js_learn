@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //'use strict' //undefined
+        const p = function () {
+            console.log("@2" + this); //[object Window]
+        }
+        p();
+
+        const animal = {
+            getName: function () {
+                setTimeout(function () {
+                    //匿名函数永远指向window
+                    console.log(this); //[object Window]
+                });
+            }
+        }
+        animal.getName();
+
+        const animal1 = {
+            getName: function () {
+                setTimeout(() => {
+                    console.log(this); //{getName: ƒ}
+                });
+            }
+        }
+        animal1.getName();
+
+        const obj = {
+            name: 'xdj',
+            age: 12,
+            add: function () {
+                //在对象中的方法被调用，this指向调用者obj
+                console.log(this); //{name: 'xdj', age: 12, add: ƒ}
+            }
+        }
+        obj.add();
+
+        const p1 = obj.add;
+        p1(); //此时指向window
+
+        const obj1 = {
+            name: 'xdj',
+            age: 12,
+            add: function () {
+                function fn() {
+                    console.log(this);
+                }
+                fn();
+            }
+        }
+        obj1.add(); //window
+
+        const obj2 = {
+            name: 'xdj',
+            age: 12,
+            add: function () {
+                const fn = () => {
+                    console.log(this);
+                }
+                fn();
+            }
+        }
+        //箭头函数的this由外层函数作用域或全局作用域决定
+        obj2.add(); //obj2
+
+        
+    </script>
+</body>
+
+</html>

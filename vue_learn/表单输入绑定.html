@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app1">
+        <input v-model="message" placeholder="edit me">
+        <p>Message is: {{ message }}</p>
+        <textarea>{{message}}</textarea>
+    </div>
+    <div id="app2">
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+    </div>
+    <div id="app3">
+        <input type="checkbox" id="jack" value="1" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+    </div>
+
+    <div id="app4">
+        <select v-model="selected">
+            <!-- 内联对象字面量 -->
+            <option v-bind:value="{ number: 2 }">123</option>
+        </select>
+    </div>
+</body>
+<script>
+    /*
+    <!-- 当选中时，`picked` 为字符串 "a" -->
+    <input type="radio" v-model="picked" value="a">
+
+    <!-- `toggle` 为 true 或 false -->
+    <input type="checkbox" v-model="toggle">
+
+    <!-- 当选中第一个选项时，`selected` 为字符串 "abc" -->
+    <select v-model="selected">
+        <option value="abc">ABC</option>
+    </select>
+    值绑定到 Vue 实例的一个动态 property 上，这时可以用 v-bind 实现，
+    并且这个 property 的值可以不是字符串。
+     */
+    const vm1 = new Vue({
+        el: '#app1',
+        data: {
+            message: 'sdfs'
+        }
+    });
+    const vm2 = new Vue({
+        el: '#app2',
+        data: {
+            checked: 'true'
+        }
+    });
+    //v-model可以将value属性与data数据绑定
+    const vm3 = new Vue({
+        el: '#app3',
+        data: {
+            checkedNames: []
+        }
+    });
+    const vm4 = new Vue({
+        el: '#app4',
+        data: {
+            selected: ''
+        }
+    });
+</script>
+
+</html>

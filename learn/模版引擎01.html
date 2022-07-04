@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="template-web.js"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <!-- 创建 script 标签创建模板,注意下面几点 -->
+    <!-- 1. type="text/该斜杠后可以是 html,template... 不是script即可)" -->
+    <!-- 2. 给 script 标签添加 id ，此 id 即为模板 id -->
+    <!-- 3.模板 script 标签必须在 template() 方法调用的 script 标签之前 -->
+    <script type="text/html" id="tpl">
+        {{if user}}
+        <h1>{{user.name}}</h1>
+        {{/if}}
+        <ul>
+            {{each user.arr val index}}
+            <li>
+                index: {{index}} value: {{val}}
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+</body>
+<script>
+    var user = {
+        name: "xdj",
+        arr: [11, 12, 13, 14]
+    }
+    var html = template("tpl", {user: user});
+    var container = document.querySelector("#container");
+    container.innerHTML = html;
+</script>
+
+</html>

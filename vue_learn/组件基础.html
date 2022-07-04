@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="components-demo">
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+    </div>
+</body>
+<script>
+    Vue.config.productionTip = false;
+    const btn = Vue.extend({
+        //注意data与new Vue（）中不同是一个函数
+        //一个组件的 data 选项必须是一个函数
+        //为了独立性
+        data: function () {
+            return {
+                count: 0
+            }
+        },
+        template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+    });
+    Vue.component('button-counter', btn);
+    const vm = new Vue({
+        el: '#components-demo',
+    });
+</script>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function A() {
+            this.id = 12;
+            this.name = 'xdj'
+        }
+        A.prototype.call = function() {
+            console.log('打电话');
+        }
+        //继承
+        function B() {
+            A.call(this, 12, 'qweq');
+        }
+
+        //以A的实例对象为桥梁，
+        B.prototype = new A();
+        //由于此时B的原型对象没有了constructor属性
+        B.prototype.constructor = B;
+
+        const b = new B();
+        console.log(b.id);
+    </script>
+</body>
+</html>

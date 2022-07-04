@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button>alert</button>
+        <script>
+            //this指向与函数的调用方式有关
+            //普通函数     window
+            //构造函数     实例对象，原型对象也指向实例对象
+            //对象方法     指向该方法的所属对象
+            //事件绑定方法  绑定对象
+            // 定时函数    window
+            //立即执行     window
+
+            //改变this指向
+            //1. call
+            /* const o = {
+                name: 'xdj'
+            }
+            function say() {
+                    console.log(this);
+                }
+            say.call(o); */
+            //2： apply()
+            /* const o = {
+                name: "xdj"
+            };
+            function fn() {
+                console.log(this);
+            }
+            fn();
+            fn.apply(o);//不同于call()，参数以数组形式传递
+            //主要用于
+            console.log(Math.max.apply(null, [1,2,3])); */
+            //3: bind()与call()类似但不会调用函数
+            const o = {
+                name: "xdj"
+            }
+            function fn() {
+                console.log(this)
+            }
+            //返回一个原函数修改后的新函数
+            const f = fn.bind(o)
+            f()
+            const btn = document.querySelector("button")
+            btn.onclick = function () {
+                this.disabled = true
+                setTimeout(
+                    function () {
+                        this.disabled = false
+                    }.bind(this),
+                    3000
+                )
+            }
+        </script>
+    </body>
+</html>

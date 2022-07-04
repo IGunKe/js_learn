@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        ul li {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="example-1">
+        <li v-for="(item, index) in items">
+            {{ parentMessage }}--{{ index }}: {{ item.message }}
+        </li>
+    </ul>
+    <ul id="v-for-object" class="demo">
+        <li v-for="(value, key) in object">
+            {{key}} : {{ value }}
+        </li>
+    </ul>
+</body>
+<script>
+    //在 v-for 块中，我们可以访问所有父作用域的 property
+    //在遍历对象时，会按 Object.keys() 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下都一致。
+    const vm = new Vue({
+        el: '#example-1',
+        data: {
+            parentMessage: 'parent',
+            items: [{
+                    message: 'foo'
+                },
+                {
+                    message: 'bar'
+                }
+            ]
+        }
+    });
+    //用 v-for 来遍历一个对象的 property。
+    //得到的是property不是key
+    const vm2 = new Vue({
+        el: '#v-for-object',
+        data: {
+            object: {
+                title: 'How to do lists in Vue',
+                author: 'Jane Doe',
+                publishedAt: '2016-04-10'
+            }
+        }
+    })
+</script>
+
+</html>

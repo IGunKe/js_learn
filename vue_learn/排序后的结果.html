@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <ul id="app">
+        <li v-for="n in evenNumbers">
+            {{ n }}
+        </li>
+    </ul>
+    <ul id="app2">
+        <template v-for="item in items">
+            <li>{{ item.msg }}</li>
+            <li class="divider" role="presentation"></li>
+        </template>
+    </ul>
+</body>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            numbers: [1, 2, 3, 4, 5]
+        },
+        computed: {
+            evenNumbers: function () {
+                return this.numbers.filter(function (number) {
+                    return number % 2 === 0;
+                });
+            }
+        }
+    });
+    const vm2 = new Vue({
+        el: '#app2',
+        data: {
+            items: [
+                {msg: 1},
+                {msg: 2}
+            ]
+        }
+    
+    });
+</script>
+
+</html>

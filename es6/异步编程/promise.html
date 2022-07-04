@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            //实例化Promise对象
+            const promise = new Promise((resolve, reject) => {
+                setTimeout(function() {
+                    //resolve 和reject用于改变promise的状态
+                    
+                    let data = 'hello world';
+                    //操作成功调resolve
+                    resolve(data);
+
+                    //操作失败调reject
+                }, 1000);
+            });
+            //then的成功与失败两个参数
+            promise.then(function(value) {
+                console.log(value);
+            },function(reason) {});
+        </script>
+    </body>
+</html>

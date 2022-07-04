@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <student></student>
+    </div>
+</body>
+<script>
+    Vue.config.productionTip = false;
+    const hello = {
+        name: 'hello',
+        template: `
+            <h1>hello</h1>
+        `
+    }
+    const student = Vue.extend({
+        name: 'student',
+        template: `
+            <div>
+                <h1>name: {{name}}</h1>
+                <hello></hello>
+            </div>
+        `,
+        data() {
+            return {
+                name: 'xdj'
+            }
+        },
+        components: {
+            hello
+        }
+    });
+    Vue.component('student', student);
+    new Vue({
+        el: '#app'
+    });
+</script>
+
+</html>

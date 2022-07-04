@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "id": 2,
+      "title": "json",
+      "author": "code"
+    },
+    {
+      "title": "hello",
+      "author": "xdj",
+      "id": 3
+    },
+    {
+      "title": "hello",
+      "author": "xdj",
+      "id": 4
+    },
+    {
+      "title": "hello",
+      "author": "xdj",
+      "id": 5
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        const obj = {
+            name: 'xdj',
+            age: 12
+        }
+        //1: Object.keys(obj) 获取对象的键， 返回一个数组
+        const m = Object.keys(obj);
+        console.log(m);
+        for (let item  of Object.keys(obj)) {
+            console.log(item);
+        }
+        //遍历对象用for-in //遍历数组用for-of, 或者forEach()
+        //2: Object.defineProperty(obj, prop, descriptor)
+        //传统
+        // obj.sum = 100;
+        // console.log(sum);
+        //新方法
+        Object.defineProperty(obj, 'uname', {
+            value: 'hello',
+            writable: false,//是否可重写
+            enumerable: false,//是否可枚举
+            configurable: false//是否可被删除或修改
+        });
+        console.log(obj);
+    </script>
+</html>

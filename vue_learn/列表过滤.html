@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="userInput">
+        <button @click="sortType = 1">up</button>
+        <button @click="sortType = 2">down</button>
+        <button @click="sortType = 0">ok</button>
+        <ul>
+            <li v-for="list in mockLists" v-bind:key="list.id">
+                {{list.name}} {{list.sex}} {{list.age}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    Vue.config.productionTip = false;
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            userInput: '',
+            sortType: 0,
+            lists: [{
+                    id: 1,
+                    name: '马冬梅',
+                    sex: '女',
+                    age: 12
+                },
+                {
+                    id: 2,
+                    name: '周杰伦',
+                    sex: '男',
+                    age: 24
+                }
+            ]
+        },
+        methods: {
+
+        },
+        computed: {
+            //计算属性只要有值改变就计算
+            mockLists() {
+                const arr = this.lists.filter((p) => {
+                    return p.name.includes(this.userInput) === true;
+                });
+                if (this.sortType){
+                    arr.sort((p1,p2) => {
+                        return this.sortType === 1 ? p1.age -p2.age : p2.age -p1.age;
+                    });
+                }
+                return arr;
+            }
+        }
+    });
+    //'abc'.includes('') ---true
+    //'abc'.indexOf('')  ---true
+</script>
+
+</html>

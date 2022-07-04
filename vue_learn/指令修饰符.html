@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <form action="" v-on:submit.prevent="check">
+            <input type="submit" value="提交">
+        </form>
+    </div>
+</body>
+<script>
+    Vue.config.productionTip = false;
+    new Vue({
+        el: '#app',
+        data: {
+            name: 'xdj', 
+        },
+        methods: {
+            check() {
+                //阻止表单的默认行为
+                //
+                
+                console.log('验证');
+            }
+        }
+    });
+</script>
+</html>

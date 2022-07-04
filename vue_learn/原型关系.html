@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //构造函数
+    function Demo() {
+        this.a = 1;
+        this.b = 2;
+    }
+    //实例对象
+    const d = new Demo();
+    //函数下有一个必有的属性Demo.property（显式原型属性）
+    //实例d.__proto__隐式原型属性
+    //都指向的对象为原型对象，只有一个
+    Demo.prototype.x = 99;//程序员给原型对象设置属性
+    //程序执行时通过d.__proto__设置
+    console.log('@',d.x);
+</script>
+
+</html>

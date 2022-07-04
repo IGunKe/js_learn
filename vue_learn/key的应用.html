@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <!-- key的作用，唯一标识 
+        虚拟DOM对比算法，提高
+    -->
+    <div id="app">
+        <button v-on:click="add">add</button>
+        <ul>
+            <li v-for="list in lists" v-bind:key="list.id">
+                {{list.name}}
+                <input type="text">
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            lists: [
+                {id: 1, name: 'qwq'},
+                {id: 2, name: '111'}
+            ]
+        },
+        methods: {
+            add: function() {
+                return this.lists.unshift({id: 3, name: 'xdj'});
+            }
+        }
+    });
+</script>
+</html>

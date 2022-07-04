@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1 :style="{opacity}">hello vue</h1>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            opacity: 1
+        }, //失败原因是调用后开始后，opacity值改变，函数会再次调用
+        /* methods: {
+            circulation() {
+                setInterval(() =>{
+                    this.opacity -= 0.01;
+                    if (this.opacity <= 0) {
+                        this.opacity = 1;
+                    }
+                }, 16)
+            }
+        } */
+        //初始化，但是没有开始数据代理
+        beforeCreate() {
+            console.log('beforeCreate');
+            console.log(this); //vm没有_data属性
+            //debugger;
+        },
+        //开始数据检测，数据代理，可以调用方法
+        created() {
+            console.log('create');
+            console.log(this); //vm有_data属性
+            debugger;
+        },
+        beforeMount() {
+            //还没有经过vue编译
+            //在这里面不可操作dom，因为最终虚拟dom会化为真实dom放入页面，覆盖操作
+        },
+        //vue解析完，把虚拟dom放入页面后调用,只会调用一次
+        mounted() {
+            //经过vue编译
+            setInterval(() => {
+                this.opacity -= 0.01;
+                if (this.opacity <= 0) {
+                    this.opacity = 1;
+                }
+            }, 16);
+        },
+        beforeUpdate() {
+            //更新data数据之前,此时数据是新的，页面还不是
+        },
+        updated() {
+            //数据页面都更新了
+        },
+        //调用vm.$destroy()开始销毁vm
+        beforeDestroy() {
+            //所有对数据的修改失效
+            //vm销毁，自定义功能失效，内置事件不会,去除组件实例对象，但页面没有,
+        },
+        destroyed() {
+            //页面销毁
+            //编程不会使用
+        }
+    });
+</script>
+
+</html>

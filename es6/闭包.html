@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        1.函数作用域包含：全局，局部
+        2.函数内可以访问全局，函数外不可访问局内
+        3.函数执行完毕，作用域内的局部变量会销毁
+        */
+    //    闭包：一个函数，可以访问另一个函数作用域的变量
+    //      跨作用域访问变量
+    //延伸了变量的作用范围
+    function fn() {
+        let num = 10;
+        function foo() {
+            num++;
+            console.log(num);
+        }
+        return foo;
+    }
+    
+    function too() {
+        const m = fn();
+        m();
+    }
+    too();
+    </script>
+</body>
+</html>
