@@ -11,15 +11,8 @@ export default {
     name: 'Hello',
     setup() {
         let sum = ref(0);
-        //shalllowReactive作用是只对第一层的属性进行响应式处理
-        //shallowRef是ref的阉割版，不对对象进行响应式处理
-        let person = shallowReactive({
-            type: '前端',
-            job : {
-                jb1: {
-                    salary: 20
-                }
-            }
+        let person = reactive({
+            type: '前端'
         })
         //toRef的作用是将引用类型中的数据暴露出去，并且是响应式的
         const name = toRef(person, 'type');

@@ -1,0 +1,27 @@
+{
+  /*
+    include: 指定那些ts文件要编译
+    **: 任意目录
+    *：任意文件
+  */
+  "include": ["./src/**/*"],
+  /*
+    exclude: 排除，不编译
+  */
+  //编译器选项
+  "compilerOptions": {
+    "target": "ES6",//编译后的js版本
+    "module": "ES6",//指定模块化规范
+    "lib": ["es6", "dom"],//添加库
+    "outDir": "./src/js",//编译后的js文件存放位置
+//    "outFile": "",//合并文件
+    "allowJs": false, //是否编译js
+    "checkJs": false, //是否检查js是否符合规范
+    "removeComments": true, //是否移除注释
+    "noEmitOnError": true, //有错时不编译
+    "alwaysStrict": true,
+    "strict": true //开启严格模式
+  }
+
+  //
+}
