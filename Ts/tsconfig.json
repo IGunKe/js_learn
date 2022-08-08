@@ -19,7 +19,7 @@
     "checkJs": false, //是否检查js是否符合规范
     "removeComments": true, //是否移除注释
     "noEmitOnError": true, //有错时不编译
-    "alwaysStrict": true,
+    // "alwaysStrict": true,
     "strict": true //开启严格模式
   }
 
