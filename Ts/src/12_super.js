@@ -15,39 +15,25 @@ var __extends = (this && this.__extends) || (function () {
 })();
 (function () {
     var Animal = /** @class */ (function () {
-        function Animal(name, age) {
+        function Animal(name) {
             this.name = name;
-            this.age = age;
         }
         Animal.prototype.sayHello = function () {
-            console.log('动物再叫。。。');
+            console.log('动物再叫');
         };
         return Animal;
     }());
-    var Dog = /** @class */ (function () {
-        function Dog(name, age) {
-            this.name = name;
-            this.age = age;
-        }
-        Dog.prototype.sayHello = function () {
-            console.log('汪汪汪');
-        };
-        return Dog;
-    }());
-    var Cat = /** @class */ (function (_super) {
-        __extends(Cat, _super);
-        function Cat() {
+    var Dog = /** @class */ (function (_super) {
+        __extends(Dog, _super);
+        function Dog() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        Cat.prototype.sayHello = function () {
-            console.log('喵喵喵。。。。');
+        Dog.prototype.sayHello = function () {
+            _super.prototype.sayHello.call(this);
+            console.log('狗在叫。。');
         };
-        return Cat;
+        return Dog;
     }(Animal));
-    var cat = new Cat('咪咪', 3);
-    var dog = new Dog('旺财', 12);
-    console.log(dog);
+    var dog = new Dog('狗');
     dog.sayHello();
-    console.log(cat);
-    cat.sayHello();
 })();

@@ -28,7 +28,11 @@
     }
 
     class Cat extends Animal {
-        
+        //继承父类的属性和方法
+        //覆盖父类同名的方法
+        sayHello(): void {
+            console.log('喵喵喵。。。。'); 
+        }
     }
 
     const cat = new Cat('咪咪', 3);
