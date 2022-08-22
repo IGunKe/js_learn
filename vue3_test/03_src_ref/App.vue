@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import { h } from 'vue';
 import { ref } from 'vue';
 export default {
     name: 'App',
@@ -19,6 +18,7 @@ export default {
         let job = ref({
             type: '前端'
         });
+        
         function changeInfo() {
             name.value = 'qqqq';
             age.value = 22;
