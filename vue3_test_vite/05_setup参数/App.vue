@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-    <Demo>
+    <Demo msg="hello">
         <template v-slot:qwe>
             <h1>hello</h1>
         </template>
