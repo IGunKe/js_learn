@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { ref, reactive, computed, watch, watchEffect, onBeforeMount } from 'vue';
+import { ref, reactive, computed, watch, watchEffect } from 'vue';
 
 export default {
     name: 'Demo',
@@ -27,11 +27,29 @@ export default {
     //     }
     // },
     setup(props, context) {
-        //组合式生命周期钩子
-        //beforeCreate和created被setup替代
-        onBeforeMount(() => {
-            console.log('beforeMount');
+        let sum = ref(0);
+        let msg = ref('hello vue');
+
+        //监视一个ref
+        watch(sum, (newValue, oldValue) => {
+            console.log('变化了 :', newValue, oldValue);
+        }, {
+            immediate: true
+        });
+
+        /* //监视多个ref, 此时的newValue和oldValue为数组
+        watch([sum, msg], (newValue, oldValue) => {
+            console.log('变化了 :', newValue, oldValue);
+        }); */
+        //
+        watchEffect(() => {
+
         })
+        
+        return {
+            sum,
+            msg
+        };
     }
 };
 </script>
