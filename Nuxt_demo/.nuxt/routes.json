@@ -1,0 +1,14 @@
+[
+  {
+    "name": "fun",
+    "path": "/fun",
+    "component": "D:\\\\Desktop\\\\js_learn\\\\Nuxt_demo\\\\pages\\\\fun.vue",
+    "chunkName": "pages/fun"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "D:\\\\Desktop\\\\js_learn\\\\Nuxt_demo\\\\pages\\\\index.vue",
+    "chunkName": "pages/index"
+  }
+]

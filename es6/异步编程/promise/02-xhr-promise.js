@@ -18,3 +18,12 @@ function getURL(url) {
         req.send();
     });
 }
+
+var URL = 'http://httpbin.org/get';
+getURL(URL)
+    .then(function onFulfilled(value) {
+        console.log(value);
+    })
+    .catch(function onRejected(error) {
+        console.error(error);
+    });
