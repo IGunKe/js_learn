@@ -14,5 +14,6 @@
             "username": "root",
             "password": "031941319"
         }
-    ]
+    ],
+    "nuxt.isNuxtApp": false
 }
