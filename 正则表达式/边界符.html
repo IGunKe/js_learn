@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <input type="text" class="inputUsername" name="username">
+        <script>
+            //字符开始 ^
+            //字符结束 $
+            /* let test = 'hello world';
+            console.log(/^hello/.test(test));
+            console.log(/orld$/.test(test)); */
+
+            //以www开头
+            const hd = 'www.xdj.com';
+            console.log(/^www/.test(hd));
+            //以。com结尾
+            console.log(/.com$/.test(hd));
+            //必须使用 ^与$ 限制
+            const inputUsername = document.querySelector('.inputUsername');
+            inputUsername.addEventListener('keyup', function() {
+                let res = this.value.match(/^[a-z]{3,6}$/i);
+                console.log(res);
+                console.log(res ? 'ok': 'error');
+            })
+        </script>
+    </body>
+</html>

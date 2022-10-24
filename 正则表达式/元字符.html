@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+    \d  匹配一个数字   [0-9]
+    \D  匹配非数字     [^0-9]
+    \w  匹配字母或数字或下划线 [a-zA-Z]
+    \W  匹配非字母或数字或下划线 [^a-zA-Z]
+    \s  匹配空白字符   [\n\f\r\t\v]
+    \S
+    .   匹配除了换行符的所有 -->
+    <script>
+        //匹配任意数字
+        let name = 'xdj 2000-820';
+        // console.log(name.match(/\d/g).join(''));//2000820
+        //等价于console.log(name.match(/[0-9]/g).join(''));
+        
+        //匹配所有电话号码
+        let tels = `张三:010-99999999,李四:020-88888888`;
+        let res = tels.match(/(010|020)-[0-9]{8}/g);
+        //console.log(res.join(''));
+        
+        //获取所有用户名
+        //console.log(tels.match(/[^:\d-,]+/g));//['张三', '李四']
+        
+        //匹配任意非数字
+        // console.log(/[^0-9]/.test(1212));//false
+
+        //匹配字母数字下划线
+        // console.log('hdcms@'.match(/\w/g));
+
+        //匹配除了字母,数字或下划线外与任何字符匹配
+        // console.log(/\W/g.test('@'));//true
+
+        //匹配与任意一个空白字符匹配
+        console.log(/\s/g.test(' '));//true
+        
+    </script>   
+</body>
+</html>

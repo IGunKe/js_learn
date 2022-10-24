@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let test = 'hello world 123';
+        let num = [...test].filter(a=> !Number.isNaN(parseInt(a)));
+        let num2 = [1, [1], [11]]
+        // console.log(num2.join(''));
+        // console.log(test.match(/l/g));
+        let test2 = 'xdj';
+        console.log(/x/.test(test2));
+    </script>
+</body>
+</html>
