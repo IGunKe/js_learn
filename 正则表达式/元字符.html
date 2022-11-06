@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,7 +39,15 @@
         // console.log(/\W/g.test('@'));//true
 
         //匹配与任意一个空白字符匹配
-        console.log(/\s/g.test(' '));//true
+        //console.log(/\s/g.test(' '));//true
+
+        //日期匹配
+        let day = '2022-10-24';
+        //console.log(/\d{4}-\d{2}-\d{2}/g.test(day));//true
+
+        let qq = '121313@qq.com';
+        let qqReg = /^[\w]+@[\w]+\.(com|cn|net)$/i;
+        //console.log(qqReg.test(qq));
         
     </script>   
 </body>
