@@ -1,6 +1,6 @@
 <template>
-    <li class="content-list" :class="changeColor">
-        <span @click="doOk">{{ list1.content }}</span>
+    <li class="content-list animate__animated  animate__zoomIn" :class="changeColor">
+        <span @click="doOk" :class="!list1.flag?'delText':''">{{ list1.content }}</span>
         <div id="btn">
             <button
                 class="iconfont icon-shanchu btn-color1"
@@ -21,7 +21,7 @@ const data = defineProps({
         type: String
     }
 });
-// console.log(data.changeColor);
+//console.log(data.changeColor);
 // console.log(data.list1);
 const emit = defineEmits(['doOk','delNote', 'editNote']);
 const doOk = () => {
@@ -55,6 +55,9 @@ const editNote = (val) => {
         margin-left: 10px;
         color: $font-color;
         font-size: 14px;
+        &.delText {
+            text-decoration: line-through;
+        }
     }
     #btn {
         button {

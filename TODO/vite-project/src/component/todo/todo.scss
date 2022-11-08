@@ -1,9 +1,10 @@
 .container {
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    width: 100vw;
-    height: 100vh;
+    
     background-color: $main-color;
     .box {
         display: flex;
@@ -38,8 +39,13 @@
                     line-height: 30px;
                     margin: 5px;
                     border-radius: 10px;
-                    background-color: $content-color;
                     color: $font-color;
+                    &.li-color {
+                        background-color: $main-color;
+                    }
+                    &.li-click-color {
+                        background-color: $content-color;
+                    }
                     &:hover {
                         cursor: pointer;
                     }
@@ -56,13 +62,17 @@
                     background-color: $main-color;
                     color: $font-color;
                 }
-
                 button {
                     width: 80px;
                     height: 40px;
                     background-color: $content-color;
                     color: $font-color;
                     border-radius: 4px;
+                    border: none;
+                    outline: none;
+                    &:hover {
+                        background-color: #303640;
+                    }
                 }
             }
             .content {
@@ -73,6 +83,16 @@
                 overflow-x: hidden;
             }
         }
+    }
+    .warn {
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        width: 230px;
+        height: 100px;
+        border-radius: 5px;
+        //transform: translateX(240px);
+        background-color: transparent;
     }
 }
 ::-webkit-scrollbar {

@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('iconfont.ttf?t=1667550209511') format('truetype');
+  src: url('iconfont.ttf?t=1667904398465') format('truetype');
 }
 
 .iconfont {
@@ -21,5 +21,9 @@
 
 .icon-caidan:before {
   content: "\e630";
+}
+
+.icon-0-31:before {
+  content: "\e601";
 }
 

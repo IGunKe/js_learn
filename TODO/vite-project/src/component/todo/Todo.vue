@@ -5,9 +5,13 @@
                 <div class="header">
                     <span class="iconfont icon-caidan"> To Do List</span>
                     <ul>
-                        <li @click="getDone">Done</li>
-                        <li @click="getDo">Do</li>
-                        <li @click="getAll">ALL</li>
+                        <li
+                            @click="getDone"
+                            :class="isClick === 3 ? 'li-click-color' : 'li-color'">
+                            Done
+                        </li>
+                        <li @click="getDo" :class="isClick === 2 ? 'li-click-color' : 'li-color'">Do</li>
+                        <li @click="getAll" :class="isClick === 1 ? 'li-click-color' : 'li-color'">ALL</li>
                     </ul>
                 </div>
                 <div class="input-content">
@@ -16,8 +20,8 @@
                         placeholder="Add new note"
                         v-model="inputStr"
                     />
-                    <button @click="addList" v-if="isEdit">ADD</button>
-                    <button @click="editList" v-if="!isEdit">EDIT</button>
+                    <button @click="addList" v-if="isEdit" :class="btnAnimate">ADD</button>
+                    <button @click="editList" v-if="!isEdit" :class="btnAnimate">EDIT</button>
                 </div>
                 <div class="content">
                     <ul>
@@ -35,11 +39,18 @@
                 </div>
             </div>
         </div>
+        <dov class="warn">
+            <ul>
+                <Warn v-if="isWarn" @destroyCom="isOk"></Warn>
+            </ul>
+        </dov>
     </div>
 </template>
 <script setup>
 import List from '../list/List.vue';
-import { ref, onUpdated, reactive, onMounted, provide, nextTick } from 'vue';
+import Warn from '../warn/Warn.vue';
+import { ref, onUpdated, reactive, onMounted } from 'vue';
+
 // 用户输入
 const inputStr = ref('');
 // 用户输入存储列表
@@ -52,7 +63,19 @@ const isEdit = ref(1);
 const flagName = ref('');
 //分类
 const otherList = reactive([]);
-
+//warn
+const isWarn = ref(false);
+const isOk = (val) => {
+    setTimeout(() => {
+        isWarn.value = val.value;
+    },1000);
+    //console.log(val.value);
+}
+//按钮更改
+const isClick = ref(1);
+//按钮动画
+const btnAnimate = reactive(['animate__animated']);
+//
 onMounted(() => {
     count.value = localStorage.getItem('count');
     if (JSON.parse(localStorage.getItem('list')) === null) {
@@ -66,14 +89,29 @@ onUpdated(() => {
     //console.log(inputStr.value);
 });
 const addList = () => {
+    //动画
+    if (btnAnimate.length === 1) {
+        btnAnimate.push('animate__heartBeat');
+    }
+    
     let str = 'text' + count.value;
     //console.log(str);
     //存入消息
     //存入消息索引
     if (inputStr.value === '') {
+        //输空警告
+        isWarn.value = true;
         return;
     }
+    isWarn.value = false;
+
     inputList.push({
+        name: str,
+        content: inputStr.value,
+        flag: 1,
+        count: count
+    });
+    otherList.push({
         name: str,
         content: inputStr.value,
         flag: 1,
@@ -83,36 +121,51 @@ const addList = () => {
     count.value++;
     localStorage.setItem('count', count.value);
     inputStr.value = '';
-};
-const getDo = () => {
-    otherList.splice(0);
-    inputList.forEach((item) => {
-        if (item.flag === 1) {
-            otherList.push(item);
-        }
-    });
+    if (btnAnimate.length === 2){
+        btnAnimate.pop();
+        btnAnimate.push('animate__heartBeat');
+    }
 };
 const getDone = () => {
     otherList.splice(0);
+    isClick.value = 3;
     inputList.forEach((item) => {
         if (item.flag === 0) {
             otherList.push(item);
         }
     });
 };
+const getDo = () => {
+    otherList.splice(0);
+    isClick.value = 2;
+    inputList.forEach((item) => {
+        if (item.flag === 1) {
+            otherList.push(item);
+        }
+    });
+};
+
 const getAll = () => {
     otherList.splice(0);
+    isClick.value = 1;
     inputList.forEach((item) => {
         otherList.push(item);
     });
 };
 //编辑
 const editList = () => {
+    if (btnAnimate.length === 1) {
+        btnAnimate.push('animate__pulse');
+    } else {
+        btnAnimate.pop();
+        btnAnimate.push('animate__pulse');
+    }
     inputList.forEach((item) => {
         if (item.name === flagName.value) {
             item.content = inputStr.value;
             localStorage.setItem('list', JSON.stringify(inputList));
             inputStr.value = '';
+            isEdit.value = 1;
             return;
         }
     });
@@ -139,6 +192,7 @@ const getDel = (val) => {
     for (let i = 0; i < inputList.length; i++) {
         if (inputList[i].name === val) {
             inputList.splice(i, 1);
+            otherList.splice(i, 1);
             localStorage.setItem('list', JSON.stringify(inputList));
             return;
         }
