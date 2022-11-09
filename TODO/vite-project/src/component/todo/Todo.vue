@@ -7,11 +7,28 @@
                     <ul>
                         <li
                             @click="getDone"
-                            :class="isClick === 3 ? 'li-click-color' : 'li-color'">
+                            :class="
+                                isClick === 3 ? 'li-click-color' : 'li-color'
+                            "
+                        >
                             Done
                         </li>
-                        <li @click="getDo" :class="isClick === 2 ? 'li-click-color' : 'li-color'">Do</li>
-                        <li @click="getAll" :class="isClick === 1 ? 'li-click-color' : 'li-color'">ALL</li>
+                        <li
+                            @click="getDo"
+                            :class="
+                                isClick === 2 ? 'li-click-color' : 'li-color'
+                            "
+                        >
+                            Do
+                        </li>
+                        <li
+                            @click="getAll"
+                            :class="
+                                isClick === 1 ? 'li-click-color' : 'li-color'
+                            "
+                        >
+                            ALL
+                        </li>
                     </ul>
                 </div>
                 <div class="input-content">
@@ -20,8 +37,16 @@
                         placeholder="Add new note"
                         v-model="inputStr"
                     />
-                    <button @click="addList" v-if="isEdit" :class="btnAnimate">ADD</button>
-                    <button @click="editList" v-if="!isEdit" :class="btnAnimate">EDIT</button>
+                    <button @click="addList" v-if="isEdit" :class="btnAnimate">
+                        ADD
+                    </button>
+                    <button
+                        @click="editList"
+                        v-if="!isEdit"
+                        :class="btnAnimate"
+                    >
+                        EDIT
+                    </button>
                 </div>
                 <div class="content">
                     <ul>
@@ -34,6 +59,7 @@
                             @doOk="getCount"
                             @delNote="getDel"
                             @editNote="getEdit"
+                            :key="val.name"
                         />
                     </ul>
                 </div>
@@ -50,9 +76,14 @@
 import List from '../list/List.vue';
 import Warn from '../warn/Warn.vue';
 import { ref, onUpdated, reactive, onMounted } from 'vue';
-
+import { useInputStore } from '../../store/store.js';
+const inputStore = useInputStore();
 // 用户输入
 const inputStr = ref('');
+// console.log(inputStr);
+onUpdated(() => {
+    //console.log(inputStr);
+})
 // 用户输入存储列表
 const inputList = reactive([]);
 // 计数
@@ -68,14 +99,12 @@ const isWarn = ref(false);
 const isOk = (val) => {
     setTimeout(() => {
         isWarn.value = val.value;
-    },1000);
+    }, 1000);
     //console.log(val.value);
-}
+};
 //按钮更改
 const isClick = ref(1);
-//按钮动画
-const btnAnimate = reactive(['animate__animated']);
-//
+
 onMounted(() => {
     count.value = localStorage.getItem('count');
     if (JSON.parse(localStorage.getItem('list')) === null) {
@@ -85,15 +114,8 @@ onMounted(() => {
     //console.log(...inputList);
     otherList.push(...inputList);
 });
-onUpdated(() => {
-    //console.log(inputStr.value);
-});
+
 const addList = () => {
-    //动画
-    if (btnAnimate.length === 1) {
-        btnAnimate.push('animate__heartBeat');
-    }
-    
     let str = 'text' + count.value;
     //console.log(str);
     //存入消息
@@ -111,6 +133,7 @@ const addList = () => {
         flag: 1,
         count: count
     });
+    //分组，便于显示动态查找
     otherList.push({
         name: str,
         content: inputStr.value,
@@ -121,10 +144,7 @@ const addList = () => {
     count.value++;
     localStorage.setItem('count', count.value);
     inputStr.value = '';
-    if (btnAnimate.length === 2){
-        btnAnimate.pop();
-        btnAnimate.push('animate__heartBeat');
-    }
+    
 };
 const getDone = () => {
     otherList.splice(0);

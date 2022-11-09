@@ -1,17 +1,25 @@
 <template>
-    <li class="content-list animate__animated  animate__zoomIn" :class="changeColor">
-        <span @click="doOk" :class="!list1.flag?'delText':''">{{ list1.content }}</span>
+    <li
+        class="content-list animate__animated animate__zoomIn"
+        :class="changeColor"
+    >
+        <span @click="doOk" :class="!list1.flag ? 'delText' : ''">{{
+            list1.content
+        }}</span>
         <div id="btn">
             <button
                 class="iconfont icon-shanchu btn-color1"
                 @click="delNote(list1.name)"
             ></button>
-            <button class="iconfont icon-bianji btn-color2" @click="editNote(list1)"></button>
+            <button
+                class="iconfont icon-bianji btn-color2"
+                @click="editNote(list1)"
+            ></button>
         </div>
     </li>
 </template>
 <script setup>
-import { inject, reactive } from 'vue';
+import { getCurrentInstance, inject, onBeforeMount, onMounted, reactive } from 'vue';
 const data = defineProps({
     list1: {
         default: [],
@@ -21,9 +29,10 @@ const data = defineProps({
         type: String
     }
 });
+
 //console.log(data.changeColor);
 // console.log(data.list1);
-const emit = defineEmits(['doOk','delNote', 'editNote']);
+const emit = defineEmits(['doOk', 'delNote', 'editNote']);
 const doOk = () => {
     emit('doOk', data.list1.name);
 };
@@ -33,7 +42,7 @@ const delNote = (val) => {
 };
 const editNote = (val) => {
     emit('editNote', val);
-}
+};
 </script>
 <style lang="scss" scoped>
 .content-list {

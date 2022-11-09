@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 双等==会进行类型转换，转换为基础类型
+        //数组总是真值
+        console.log([] == true);//false
+        console.log([] == ![]); //> true
+        console.log(0 == false);//true
+        console.log(+'ban');//>NaN
+        //非空字符串无法转化为数字输出NaN
+        console.log('b' + 'a' + +'a' + 'a');
+        //严格相等中类型不同输出false
+        console.log([] === '');
+        console.log(NaN === NaN);//false
+        console.log(Object.is(NaN,NaN));//true
+        console.log(null == false);//false
+        console.log(document.all == undefined);//true
+        console.log(document.all === undefined);//false
+        console.log(document.all == null);//true
+        console.log(document.all === null);//false
+        console.log(typeof document.all);//undefined
+        console.log([1, 2, 3] + [ 4, 5, 6]);
+        let str = '1000000';
+        
+        console.log(str.replace(/(?=\B(\d{3})+$)/g, ','));
+    </script>
+</body>
+</html>
